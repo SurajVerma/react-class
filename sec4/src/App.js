@@ -19,8 +19,8 @@ const StyledButton = styled.button`
 class App extends React.Component {
   state = {
     persons: [
-      { id: 1, name: 'Anvika', age: 0.8 },
-      { id: 2, name: 'Advika', age: 0.8 },
+      { id: 1, name: 'Anvika', age: 0.6 },
+      { id: 2, name: 'Advika', age: 0.6 },
       { id: 3, name: 'Suraj', age: 31 },
     ],
 
@@ -29,16 +29,16 @@ class App extends React.Component {
   // switchNameHandler = (newName) => {
   //   this.setState({
   //     persons: [
-  //       {name: newName, age: 0.8},
-  //       {name: 'Advika Verma', age: 0.8}
+  //       {name: newName, age: 0.6},
+  //       {name: 'Advika Verma', age: 0.6}
   //     ]
   //   })
   // }
   // nameChangeHandler = (event) => {
   //   this.setState({
   //     persons: [
-  //       {name: event.target.value, age: 0.8},
-  //       {name: 'Advika Verma', age: 0.8}
+  //       {name: event.target.value, age: 0.6},
+  //       {name: 'Advika Verma', age: 0.6}
   //     ],
   //     showPersons: false
   //   })
