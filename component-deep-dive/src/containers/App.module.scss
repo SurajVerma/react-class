@@ -39,3 +39,17 @@
     transform: rotate(360deg);
   }
 }
+
+.button{
+  background-color: green;
+  color: white;
+  text-transform: uppercase;
+  padding: 7px 10px;
+  border: 1px solid #ddd;
+  &:hover {
+    background: darkgreen;;
+  }
+  &.red{background: red;
+    &:hover{background: salmon;}
+  }
+}
