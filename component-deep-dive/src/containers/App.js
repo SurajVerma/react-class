@@ -1,20 +1,7 @@
 import React from 'react';
-//import logo from './logo.svg';
-// import Radium, { StyleRoot } from 'radium';
-// import styled from 'styled-components';
 import classes from './App.module.scss';
 import Persons from '../components/Persons/Persons';
-
-// const StyledButton = styled.button`
-//       background-color: ${props => props.change ? 'red' : 'green'};
-//       color: white;
-//       text-transform: uppercase;
-//       padding: 7px 10px;
-//       border: 1px solid #ddd;
-//       &:hover {
-//         background: ${props => props.change ? 'salmon' : 'darkgreen'};;
-//       }
-//   `
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends React.Component {
   state = {
@@ -26,23 +13,6 @@ class App extends React.Component {
 
   }
 
-  // switchNameHandler = (newName) => {
-  //   this.setState({
-  //     persons: [
-  //       {name: newName, age: 0.6},
-  //       {name: 'Advika Verma', age: 0.6}
-  //     ]
-  //   })
-  // }
-  // nameChangeHandler = (event) => {
-  //   this.setState({
-  //     persons: [
-  //       {name: event.target.value, age: 0.6},
-  //       {name: 'Advika Verma', age: 0.6}
-  //     ],
-  //     showPersons: false
-  //   })
-  // }
   nameChangeHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id
@@ -73,51 +43,16 @@ class App extends React.Component {
 
   render() {
     let persons = null;
-    const btnClass = [classes.button]
-    const assignedClasses = [];
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red);
-    }
-    if (this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold);
-    }
-
     if (this.state.showPersons) {
-      persons = (
-        <div>
-          {/* <Person 
-          click={this.switchNameHandler.bind(this, 'Annu!')} 
-          change={this.nameChangeHandler}
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age} >I am very naughty, and I love Dada ji ki dukan</Person>
-          <Person 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age} >I am Dadi ji ki dulari, and I scream a lot</Person> */}
-          <Persons clicked={this.deletePersonHandler} changed={this.nameChangeHandler} persons={this.state.persons}/>
-        </div>        
-      )
-      btnClass.push(classes.red);
+      persons = <Persons 
+      clicked={this.deletePersonHandler} 
+      changed={this.nameChangeHandler} 
+      persons={this.state.persons}/>;
     }
     return (
 
       <div className={classes.App}>
-        <h1>Hi! I am React App</h1>
-        <p className={assignedClasses.join(' ')}>This is really working</p>
-        <button className={btnClass.join(' ')} change={this.state.showPersons} onClick={() => this.togglePersonHandler()}>Toggle Persons</button>
-
-        {/* <StyledButton change={this.state.showPersons} onClick={() => this.togglePersonHandler()}>Toggle Persons</StyledButton> */}
-        {/* {this.state.showPersons ?
-        <div>
-        <Person 
-        click={this.switchNameHandler.bind(this, 'Annu!')} 
-        change={this.nameChangeHandler}
-        name={this.state.persons[0].name} 
-        age={this.state.persons[0].age} >I am very naughty, and I love Dada ji ki dukan</Person>
-        <Person 
-        name={this.state.persons[1].name} 
-        age={this.state.persons[1].age} >I am Dadi ji ki dulari, and I scream a lot</Person>
-          </div> : null
-          } */}
+        <Cockpit showPersons={this.state.showPersons} persons={this.state.persons} clicked={() => this.togglePersonHandler()}/>
         {persons}
       </div>
 
