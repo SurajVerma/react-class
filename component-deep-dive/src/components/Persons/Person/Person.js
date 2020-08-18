@@ -1,32 +1,45 @@
 import React from 'react';
-// import Radium from 'radium';
 import classes from './Person.module.scss';
-// import styled from 'styled-components';
+import Aux from '../../../hoc/Aux';
+import withClass from '../../../hoc/withClass';
+import propTypes from 'prop-types';
 
-// const StyledDiv = styled.div`width: 60%;margin: 15px auto;border: 1px solid #ccc;box-shadow: 0 0 5px 1px rgba(0,0,0, .5);padding: 10px;
-// @media (min-width:500px){
-//     width:500px;
-// }
-// `
+class Person extends React.Component{
+    constructor(props){
+        super(props)
+        this.inputElementRef = React.createRef();
+    }
 
-const person = (props) => {
-    // const style = {
-    // '@media (min-width:500px)': {
-    //     width: '450px'
-    // }
-    // }
-    return (
-        <div className={classes.person}>
-            <p onClick={props.click}>I am {props.name} and I am {props.age} years old!</p>
-            <p>{props.children}</p>
-            <input type="text" onChange={props.change} value={props.name} />
-        </div>
-        // <StyledDiv>
-        //     <p onClick={props.click}>I am {props.name} and I am {props.age} years old!</p>
-        //     <p>{props.children}</p>
-        //     <input type="text" onChange={props.change} value={props.name} />
-        // </StyledDiv>
-    )
+    componentDidMount(){
+        //this.inputElement.focus();
+        this.inputElementRef.current.focus();
+    }
+
+    render(){
+        console.log('[Person.js], rendering...')
+        
+        return (
+            // <div className={classes.person}>
+                <Aux>
+                {this.props.isAuth ? 'User Authenticated' : 'Please login'}
+                <p onClick={this.props.click}>I am {this.props.name} and I am {this.props.age} years old!</p>
+                <p>{this.props.children}</p>
+                <input type="text" 
+                onChange={this.props.change} 
+                value={this.props.name} 
+                //ref={(inputEl) => this.inputElement = inputEl}
+                ref={this.inputElementRef}
+                />
+                </Aux>
+            // </div>
+        )
+    }
 }
 
-export default person;
+Person.propTypes = {
+    click: propTypes.func,
+    name: propTypes.string,
+    age: propTypes.number,
+    change: propTypes.func
+}
+export default withClass(Person, classes.person);
